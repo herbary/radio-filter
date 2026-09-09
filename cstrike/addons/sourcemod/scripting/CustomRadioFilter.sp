@@ -5,6 +5,12 @@
 #pragma semicolon 1
 #pragma newdecls required
 
+#define PLUGIN_NAME         "CustomRadioFilter"
+#define PLUGIN_AUTHOR       "Lojka, Mee;w"
+#define PLUGIN_DESCRIPTION  ""
+#define PLUGIN_VERSION      "1.0"
+#define PLUGIN_URL          "https://github.com/herbary/radio-filter"
+
 #define GAMECONF_FILE "CustomRadioFilter.games"
 
 DynamicDetour g_hDetour_ConstructRadioFilter;
@@ -14,13 +20,12 @@ Handle g_hSDKCall_RemoveRecipientByPlayerIndex;
 Handle g_hSDKCall_GetRecipientCount;
 Handle g_hSDKCall_GetRecipientIndex;
 
-public Plugin myinfo =
-{
-    name        = "CustomRadioFilter",
-    author      = "Lojka",
-    description = "",
-    version     = "1.0",
-    url         = "https://github.com/L0jk4/CustomRadioFilter"
+public Plugin myinfo = {
+    name = PLUGIN_NAME,
+    author = PLUGIN_AUTHOR,
+    description = PLUGIN_DESCRIPTION,
+    version = PLUGIN_VERSION,
+    url = PLUGIN_URL
 };
 
 public void OnPluginStart()
