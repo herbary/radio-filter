@@ -83,7 +83,7 @@ static void InitSDKCalls_CRecipientFilter(GameData gd)
         SetFailState("Failed to create SDKCall for \"CRecipientFilter::AddRecipient\"");
     }
 
-    // virtual int	GetRecipientCount( void ) const;
+    // virtual int GetRecipientCount( void ) const;
     StartPrepSDKCall(SDKCall_Raw);
     PrepSDKCall_SetFromConf(gd, SDKConf_Virtual, "CRecipientFilter::GetRecipientCount");
     PrepSDKCall_SetReturnInfo(SDKType_PlainOldData, SDKPass_Plain);
@@ -94,7 +94,7 @@ static void InitSDKCalls_CRecipientFilter(GameData gd)
         SetFailState("Failed to create SDKCall for \"CRecipientFilter::GetRecipientCount\"");
     }
 
-    // virtual int	GetRecipientIndex( int slot ) const;
+    // virtual int GetRecipientIndex( int slot ) const;
     StartPrepSDKCall(SDKCall_Raw);
     PrepSDKCall_SetFromConf(gd, SDKConf_Virtual, "CRecipientFilter::GetRecipientIndex");
     PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
@@ -106,7 +106,7 @@ static void InitSDKCalls_CRecipientFilter(GameData gd)
         SetFailState("Failed to create SDKCall for \"CRecipientFilter::GetRecipientIndex\"");
     }
 
-    // void	RemoveRecipientByPlayerIndex( int playerindex );
+    // void RemoveRecipientByPlayerIndex( int playerindex );
     StartPrepSDKCall(SDKCall_Raw);
     PrepSDKCall_SetFromConf(gd, SDKConf_Signature, "CRecipientFilter::RemoveRecipientByPlayerIndex");
     PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
@@ -130,17 +130,17 @@ methodmap M_CRecipientFilter
         SDKCall(g_hSDKCall_AddRecipient, view_as<Address>(this), playerindex);
     }
 
-    public void	RemoveRecipient(int playerindex)
+    public void RemoveRecipient(int playerindex)
     {
         SDKCall(g_hSDKCall_RemoveRecipientByPlayerIndex, view_as<Address>(this), playerindex);
     }
 
-    public int	GetRecipientCount()
+    public int GetRecipientCount()
     {
         return SDKCall(g_hSDKCall_GetRecipientCount, view_as<Address>(this));
     }
 
-    public int	GetRecipientIndex(int slot)
+    public int GetRecipientIndex(int slot)
     {
         return SDKCall(g_hSDKCall_GetRecipientIndex, view_as<Address>(this), slot);
     }
