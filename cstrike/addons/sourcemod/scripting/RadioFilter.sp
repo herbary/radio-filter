@@ -5,13 +5,13 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#define PLUGIN_NAME         "CustomRadioFilter"
+#define PLUGIN_NAME         "RadioFilter"
 #define PLUGIN_AUTHOR       "Lojka, Mee;w"
 #define PLUGIN_DESCRIPTION  ""
 #define PLUGIN_VERSION      "1.0"
 #define PLUGIN_URL          "https://github.com/herbary/radio-filter"
 
-#define GAMECONF_FILE "CustomRadioFilter.games"
+#define GAMECONF_FILE "RadioFilter.games"
 
 DynamicDetour g_hDetour_ConstructRadioFilter;
 
