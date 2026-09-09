@@ -30,16 +30,7 @@ public Plugin myinfo = {
 
 public void OnPluginStart()
 {
-    GameData gd = new GameData(GAMECONF_FILE);
-    if (gd == null) {
-        delete gd;
-        SetFailState("Failed to load gamedata file: %s", GAMECONF_FILE);
-    }
-
-    InitDetour_ConstructRadioFilter(gd);
-    InitSDKCalls_CRecipientFilter(gd);
-
-    delete gd;
+    RadioFilter_InitGameData();
 }
 
 // void CCSPlayer::ConstructRadioFilter( CRecipientFilter& filter )
@@ -51,13 +42,29 @@ public MRESReturn Detour_ConstructRadioFilter(int sender, DHookParam hParams)
     for (int slot = count - 1; slot >= 0; --slot)
     {
         int client = filter.GetRecipientIndex(slot);
-        if (client != sender)
+        if (client == sender)
         {
-            filter.RemoveRecipient(client);
+            continue;
         }
+
+        filter.RemoveRecipient(client);
     }
 
     return MRES_Supercede;
+}
+
+static void RadioFilter_InitGameData()
+{
+    GameData gd = new GameData(GAMECONF_FILE);
+    if (gd == null) {
+        delete gd;
+        SetFailState("Failed to load gamedata file: %s", GAMECONF_FILE);
+    }
+
+    InitDetour_ConstructRadioFilter(gd);
+    InitSDKCalls_CRecipientFilter(gd);
+
+    delete gd;
 }
 
 static void InitDetour_ConstructRadioFilter(GameData gd)
