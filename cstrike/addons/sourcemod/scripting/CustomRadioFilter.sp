@@ -48,11 +48,13 @@ public MRESReturn Detour_ConstructRadioFilter(int sender, DHookParam hParams)
     M_CRecipientFilter filter = view_as<M_CRecipientFilter>(hParams.GetAddress(1));
 
     int count = filter.GetRecipientCount();
-    for (int slot = 0; slot < count; ++slot)
+    for (int slot = count - 1; slot >= 0; --slot)
     {
         int client = filter.GetRecipientIndex(slot);
-        // if ClientFilter[client] == Filter_PartnerOnly && sender != PartnerOf(client)
-        filter.RemoveRecipient(client);
+        if (client != sender)
+        {
+            filter.RemoveRecipient(client);
+        }
     }
 
     return MRES_Supercede;
