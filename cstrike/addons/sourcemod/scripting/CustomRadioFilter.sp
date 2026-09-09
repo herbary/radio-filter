@@ -91,7 +91,7 @@ void InitSDKCalls_CRecipientFilter(GameData gd)
 	// virtual int	GetRecipientIndex( int slot ) const;
 	StartPrepSDKCall(SDKCall_Raw);
 	PrepSDKCall_SetFromConf(gd, SDKConf_Virtual, "CRecipientFilter::GetRecipientIndex");
-	PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain); 
+	PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
 	PrepSDKCall_SetReturnInfo(SDKType_PlainOldData, SDKPass_Plain);
 	g_hSDKCall_GetRecipientIndex = EndPrepSDKCall();
 	if (g_hSDKCall_GetRecipientIndex == null)
@@ -103,7 +103,7 @@ void InitSDKCalls_CRecipientFilter(GameData gd)
 	// void	RemoveRecipientByPlayerIndex( int playerindex );
 	StartPrepSDKCall(SDKCall_Raw);
 	PrepSDKCall_SetFromConf(gd, SDKConf_Signature, "CRecipientFilter::RemoveRecipientByPlayerIndex");
-	PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain); 
+	PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
 	g_hSDKCall_RemoveRecipientByPlayerIndex = EndPrepSDKCall();
 	if (g_hSDKCall_RemoveRecipientByPlayerIndex == null)
 	{
