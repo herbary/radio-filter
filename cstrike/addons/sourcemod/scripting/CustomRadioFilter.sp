@@ -5,6 +5,8 @@
 #pragma semicolon 1
 #pragma newdecls required
 
+#define GAMECONF_FILE "CustomRadioFilter.games"
+
 DynamicDetour g_hDetour_ConstructRadioFilter;
 
 Handle g_hSDKCall_AddRecipient;
@@ -21,13 +23,17 @@ public Plugin myinfo =
     url         = "https://github.com/L0jk4/CustomRadioFilter"
 };
 
-#define GAMECONF_FILE   "CustomRadioFilter.games"
 public void OnPluginStart()
 {
     GameData gd = new GameData(GAMECONF_FILE);
-    if (gd == null) { delete gd; SetFailState("Failed to load gamedata file: %s", GAMECONF_FILE); }
+    if (gd == null) {
+        delete gd;
+        SetFailState("Failed to load gamedata file: %s", GAMECONF_FILE);
+    }
+
     InitDetour_ConstructRadioFilter(gd);
     InitSDKCalls_CRecipientFilter(gd);
+
     delete gd;
 }
 
@@ -35,8 +41,9 @@ public void OnPluginStart()
 public MRESReturn Detour_ConstructRadioFilter(int sender, DHookParam hParams)
 {
     M_CRecipientFilter filter = view_as<M_CRecipientFilter>(hParams.GetAddress(1));
-    int numRecipients = filter.GetRecipientCount();
-    for ( int slot = 0; slot < numRecipients; slot++)
+
+    int count = filter.GetRecipientCount();
+    for (int slot = 0; slot < count; ++slot)
     {
         int client = filter.GetRecipientIndex(slot);
         // if ClientFilter[client] == Filter_PartnerOnly && sender != PartnerOf(client)
@@ -50,8 +57,7 @@ void InitDetour_ConstructRadioFilter(GameData gd)
 {
     // void CCSPlayer::ConstructRadioFilter( CRecipientFilter& filter )
     g_hDetour_ConstructRadioFilter = new DynamicDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_CBaseEntity);
-    if (g_hDetour_ConstructRadioFilter == null ||
-        !g_hDetour_ConstructRadioFilter.SetFromConf(gd, SDKConf_Signature, "CCSPlayer::ConstructRadioFilter"))
+    if (g_hDetour_ConstructRadioFilter == null || !g_hDetour_ConstructRadioFilter.SetFromConf(gd, SDKConf_Signature, "CCSPlayer::ConstructRadioFilter"))
     {
         delete gd;
         SetFailState("Failed to find signature for \"CCSPlayer::ConstructRadioFilter\"");
@@ -119,19 +125,22 @@ methodmap M_CRecipientFilter
         return view_as<M_CRecipientFilter>(addr);
     }
 
-    public void AddRecipient( int playerindex )
+    public void AddRecipient(int playerindex)
     {
         SDKCall(g_hSDKCall_AddRecipient, view_as<Address>(this), playerindex);
     }
-    public void	RemoveRecipient( int playerindex )
+
+    public void	RemoveRecipient(int playerindex)
     {
         SDKCall(g_hSDKCall_RemoveRecipientByPlayerIndex, view_as<Address>(this), playerindex);
     }
+
     public int	GetRecipientCount()
     {
         return SDKCall(g_hSDKCall_GetRecipientCount, view_as<Address>(this));
     }
-    public int	GetRecipientIndex( int slot )
+
+    public int	GetRecipientIndex(int slot)
     {
         return SDKCall(g_hSDKCall_GetRecipientIndex, view_as<Address>(this), slot);
     }
