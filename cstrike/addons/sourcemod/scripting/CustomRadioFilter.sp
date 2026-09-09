@@ -53,7 +53,7 @@ public MRESReturn Detour_ConstructRadioFilter(int sender, DHookParam hParams)
     return MRES_Supercede;
 }
 
-void InitDetour_ConstructRadioFilter(GameData gd)
+static void InitDetour_ConstructRadioFilter(GameData gd)
 {
     // void CCSPlayer::ConstructRadioFilter( CRecipientFilter& filter )
     g_hDetour_ConstructRadioFilter = new DynamicDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_CBaseEntity);
@@ -70,7 +70,7 @@ void InitDetour_ConstructRadioFilter(GameData gd)
     }
 }
 
-void InitSDKCalls_CRecipientFilter(GameData gd)
+static void InitSDKCalls_CRecipientFilter(GameData gd)
 {
     // void CRecipientFilter::AddRecipient( const CBasePlayer *player )
     StartPrepSDKCall(SDKCall_Raw);
