@@ -437,16 +437,16 @@ static void MenuHandler_Radio(Menu menu, MenuAction action, int client, int inde
         delete menu;
         return;
     }
+    if (!RadioFilter_IsPlayerInGame(client))
+    {
+        return;
+    }
     if (action == MenuAction_Cancel)
     {
         g_hMenu[client] = null;
         return;
     }
     if (action != MenuAction_Select)
-    {
-        return;
-    }
-    if (!RadioFilter_IsPlayerInGame(client))
     {
         return;
     }
