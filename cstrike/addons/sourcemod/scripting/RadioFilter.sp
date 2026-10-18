@@ -14,7 +14,7 @@
 #define _RADIO_FILTER_NAME          "RadioFilter"
 #define _RADIO_FILTER_AUTHOR        "Lojka, Mee;w"
 #define _RADIO_FILTER_DESCRIPTION   "Allows to filter clients that will recieve radio messages"
-#define _RADIO_FILTER_VERSION       "v0.2-r0"
+#define _RADIO_FILTER_VERSION       "v0.2-r1"
 #define _RADIO_FILTER_URL           "https://github.com/herbary/radio-filter"
 
 #define _RADIO_FILTER_GAMECONF_FILE                                             "RadioFilter.games"
