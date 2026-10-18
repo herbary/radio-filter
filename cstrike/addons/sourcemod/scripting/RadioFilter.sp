@@ -13,7 +13,7 @@
 
 #define _RADIO_FILTER_NAME          "RadioFilter"
 #define _RADIO_FILTER_AUTHOR        "Lojka, Mee;w"
-#define _RADIO_FILTER_DESCRIPTION   "Allows to filter out radio messages from all or just by your Trikz partnership"
+#define _RADIO_FILTER_DESCRIPTION   "Allows to filter clients that will recieve radio messages"
 #define _RADIO_FILTER_VERSION       "v0.2-r0"
 #define _RADIO_FILTER_URL           "https://github.com/herbary/radio-filter"
 
