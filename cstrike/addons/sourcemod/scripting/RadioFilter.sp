@@ -577,7 +577,7 @@ static void RadioFilter_InitGameData()
 
     // void RemoveRecipientByPlayerIndex( int playerindex );
     StartPrepSDKCall(SDKCall_Raw);
-    PrepSDKCall_SetFromConf(hGameData, SDKConf_Signature, "CRecipientFilter::RemoveRecipientByPlayerIndex");
+    PrepSDKCall_SetFromConf(hGameData, SDKConf_Signature, _RADIO_FILTER_GAMECONF_CRECIPIENTFILTER__REMOVERECIPIENTBYPLAYERINDEX);
     PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
     g_hCRecipientFilter__RemoveRecipientByPlayerIndex = EndPrepSDKCall();
     if (g_hCRecipientFilter__RemoveRecipientByPlayerIndex == INVALID_HANDLE)
@@ -589,7 +589,7 @@ static void RadioFilter_InitGameData()
 
     // virtual int GetRecipientCount( void ) const;
     StartPrepSDKCall(SDKCall_Raw);
-    PrepSDKCall_SetFromConf(hGameData, SDKConf_Virtual, "CRecipientFilter::GetRecipientCount");
+    PrepSDKCall_SetFromConf(hGameData, SDKConf_Virtual, _RADIO_FILTER_GAMECONF_CRECIPIENTFILTER__GETRECIPIENTCOUNT);
     PrepSDKCall_SetReturnInfo(SDKType_PlainOldData, SDKPass_Plain);
     g_hCRecipientFilter__GetRecipientCount = EndPrepSDKCall();
     if (g_hCRecipientFilter__GetRecipientCount == INVALID_HANDLE)
@@ -601,7 +601,7 @@ static void RadioFilter_InitGameData()
 
     // virtual int GetRecipientIndex( int slot ) const;
     StartPrepSDKCall(SDKCall_Raw);
-    PrepSDKCall_SetFromConf(hGameData, SDKConf_Virtual, "CRecipientFilter::GetRecipientIndex");
+    PrepSDKCall_SetFromConf(hGameData, SDKConf_Virtual, _RADIO_FILTER_GAMECONF_CRECIPIENTFILTER__GETRECIPIENTINDEX);
     PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
     PrepSDKCall_SetReturnInfo(SDKType_PlainOldData, SDKPass_Plain);
     g_hCRecipientFilter__GetRecipientIndex = EndPrepSDKCall();
